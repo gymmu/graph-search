@@ -1,0 +1,13 @@
+{
+  "name": "graph-search",
+  "version": "0.1.0",
+  "description": "Klassische KI: Graphensuche (BFS, DFS, UCS, Greedy, A*) für den EF Informatik",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "puzzle": "node index.js puzzle bfs",
+    "wzk": "node index.js wzk bfs"
+  },
+  "license": "MIT"
+}
