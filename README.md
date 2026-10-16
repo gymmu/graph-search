@@ -22,7 +22,7 @@ Es braucht keine Installation, nur Node.js.
 ```
 index.js                 Kommandozeile
 src/problem.js           Was ein Problem können muss
-src/search.js            BFS, DFS, UCS, Greedy, A*
+src/search.js            BFS fertig; DFS und UCS TODO — Ihre Aufgabe
 src/heuristics.js        Heuristiken (Woche 2, teilweise TODO)
 src/problems/
   wolf-goat-cabbage.js   fertig

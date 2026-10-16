@@ -31,71 +31,57 @@ class Queue {
   }
 }
 
-/** LIFO: der zuletzt gefundene Knoten kommt zuerst dran. */
+/**
+ * LIFO: der zuletzt gefundene Knoten kommt zuerst dran.
+ *
+ * AUFGABE: Implementieren Sie diese Klasse. Schauen Sie sich Queue oben an —
+ * es ist fast dasselbe. Nur pop() nimmt am anderen Ende heraus.
+ */
 class Stack {
   constructor() {
     this.items = [];
   }
   get size() {
-    return this.items.length;
+    // TODO: wie viele Knoten liegen auf dem Stapel?
+    throw new Error("Stack.size ist noch nicht implementiert");
   }
-  push(node) {
-    this.items.push(node);
+  push(_node) {
+    // TODO: Knoten oben auf den Stapel legen
+    throw new Error("Stack.push() ist noch nicht implementiert");
   }
   pop() {
-    return this.items.pop();
+    // TODO: den obersten Knoten herausnehmen und zurückgeben
+    throw new Error("Stack.pop() ist noch nicht implementiert");
   }
 }
 
-/** Prioritätswarteschlange (Min-Heap): der billigste Knoten kommt zuerst dran. */
+/**
+ * Prioritätswarteschlange: der billigste Knoten kommt zuerst dran.
+ *
+ * AUFGABE: Implementieren Sie diese Klasse. Der Konstruktor bekommt eine
+ * Funktion priority(node); pop() gibt den Knoten mit dem KLEINSTEN Wert
+ * zurück.
+ *
+ * Fangen Sie einfach an: push() hängt hinten an, pop() sucht das Minimum
+ * linear und entfernt es mit splice(). Das ist langsam, aber korrekt.
+ * Einen Min-Heap bauen Sie erst, wenn der Rest läuft.
+ */
 class PriorityQueue {
   constructor(priority) {
     this.items = [];
     this.priority = priority;
   }
   get size() {
-    return this.items.length;
+    // TODO: wie viele Knoten warten in der Grenze?
+    throw new Error("PriorityQueue.size ist noch nicht implementiert");
   }
-  push(node) {
-    this.items.push(node);
-    let i = this.items.length - 1;
-    while (i > 0) {
-      const parent = (i - 1) >> 1;
-      if (this.priority(this.items[parent]) <= this.priority(this.items[i]))
-        break;
-      [this.items[parent], this.items[i]] = [this.items[i], this.items[parent]];
-      i = parent;
-    }
+  push(_node) {
+    // TODO: Knoten aufnehmen
+    throw new Error("PriorityQueue.push() ist noch nicht implementiert");
   }
   pop() {
-    const top = this.items[0];
-    const last = this.items.pop();
-    if (this.items.length > 0) {
-      this.items[0] = last;
-      let i = 0;
-      for (;;) {
-        const l = 2 * i + 1;
-        const r = l + 1;
-        let kleinster = i;
-        if (
-          l < this.items.length &&
-          this.priority(this.items[l]) < this.priority(this.items[kleinster])
-        )
-          kleinster = l;
-        if (
-          r < this.items.length &&
-          this.priority(this.items[r]) < this.priority(this.items[kleinster])
-        )
-          kleinster = r;
-        if (kleinster === i) break;
-        [this.items[i], this.items[kleinster]] = [
-          this.items[kleinster],
-          this.items[i],
-        ];
-        i = kleinster;
-      }
-    }
-    return top;
+    // TODO: den Knoten mit der kleinsten Priorität herausnehmen
+    throw new Error("PriorityQueue.pop() ist noch nicht implementiert");
   }
 }
 
@@ -193,12 +179,13 @@ export function bfs(problem, options) {
   return search(problem, new Queue(), options);
 }
 
-/** Tiefensuche: läuft einem Pfad bis ganz nach unten nach. */
+/** Tiefensuche: läuft einem Pfad bis ganz nach unten nach. Braucht Stack. */
 export function dfs(problem, options) {
   return search(problem, new Stack(), options);
 }
 
-/** Kostensuche (Uniform Cost, Dijkstra): findet den billigsten Weg. */
+/** Kostensuche (Uniform Cost, Dijkstra): findet den billigsten Weg.
+ *  Braucht PriorityQueue. */
 export function ucs(problem, options) {
   return search(problem, new PriorityQueue((node) => node.g), options);
 }
