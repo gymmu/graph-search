@@ -47,7 +47,11 @@ export class SlidingPuzzle extends Problem {
       const next = [...state];
       next[leer] = next[ziel];
       next[ziel] = 0;
-      result.push({ action: `${next[leer]} ${zug.action}`, cost: 1, state: next });
+      result.push({
+        action: `${next[leer]} ${zug.action}`,
+        cost: 1,
+        state: next,
+      });
     }
     return result;
   }

@@ -61,7 +61,8 @@ class PriorityQueue {
     let i = this.items.length - 1;
     while (i > 0) {
       const parent = (i - 1) >> 1;
-      if (this.priority(this.items[parent]) <= this.priority(this.items[i])) break;
+      if (this.priority(this.items[parent]) <= this.priority(this.items[i]))
+        break;
       [this.items[parent], this.items[i]] = [this.items[i], this.items[parent]];
       i = parent;
     }
@@ -76,10 +77,21 @@ class PriorityQueue {
         const l = 2 * i + 1;
         const r = l + 1;
         let kleinster = i;
-        if (l < this.items.length && this.priority(this.items[l]) < this.priority(this.items[kleinster])) kleinster = l;
-        if (r < this.items.length && this.priority(this.items[r]) < this.priority(this.items[kleinster])) kleinster = r;
+        if (
+          l < this.items.length &&
+          this.priority(this.items[l]) < this.priority(this.items[kleinster])
+        )
+          kleinster = l;
+        if (
+          r < this.items.length &&
+          this.priority(this.items[r]) < this.priority(this.items[kleinster])
+        )
+          kleinster = r;
         if (kleinster === i) break;
-        [this.items[i], this.items[kleinster]] = [this.items[kleinster], this.items[i]];
+        [this.items[i], this.items[kleinster]] = [
+          this.items[kleinster],
+          this.items[i],
+        ];
         i = kleinster;
       }
     }
@@ -105,7 +117,11 @@ function buildPath(node) {
   const path = [];
   let current = node;
   while (current) {
-    path.unshift({ state: current.state, action: current.action, g: current.g });
+    path.unshift({
+      state: current.state,
+      action: current.action,
+      g: current.g,
+    });
     current = current.parent;
   }
   return path;
@@ -194,7 +210,11 @@ export function greedy(problem, h, options) {
 
 /** A*: g + h. Optimal, solange h nie überschätzt. */
 export function astar(problem, h, options) {
-  return search(problem, new PriorityQueue((node) => node.g + h(node.state)), options);
+  return search(
+    problem,
+    new PriorityQueue((node) => node.g + h(node.state)),
+    options,
+  );
 }
 
 export const ALGORITHMS = { bfs, dfs, ucs };

@@ -47,7 +47,9 @@ export class WolfGoatCabbage extends Problem {
           [dort]: [...state[dort], ...weg].sort(),
         };
         return {
-          action: ladung ? `Bauer fährt mit ${ladung} nach ${dort}` : `Bauer fährt alleine nach ${dort}`,
+          action: ladung
+            ? `Bauer fährt mit ${ladung} nach ${dort}`
+            : `Bauer fährt alleine nach ${dort}`,
           cost: 1,
           state: next,
         };
